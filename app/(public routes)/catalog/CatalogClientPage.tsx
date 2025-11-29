@@ -1,0 +1,85 @@
+'use client';
+
+import { useEffect, useState } from 'react';
+import { useCarStore } from '@/store/carsStore';
+import fetchCars from '@/services/carsService';
+import Filters from './components/Filters/Filters';
+import CarList from './components/CarList/CarList';
+
+export default function CatalogClientPage() {
+  const { cars, filters, addCars, removeCars } = useCarStore();
+  const [page, setPage] = useState(1);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isFetchingNextPage, setIsFetchingNextPage] = useState(false);
+  const [hasNextPage, setHasNextPage] = useState(true);
+
+  // Load initial cars when filters change
+  useEffect(() => {
+    const loadCars = async () => {
+      setIsLoading(true);
+      removeCars();
+      setPage(1);
+
+      const response = await fetchCars(
+        {
+          brand: filters.brand || null,
+          price: filters.rentalPrice || null,
+          mileage: {
+            from: filters.minMileage ? Number(filters.minMileage) : null,
+            to: filters.maxMileage ? Number(filters.maxMileage) : null,
+          },
+        },
+        1
+      );
+
+      addCars(response.cars);
+      setHasNextPage(response.page < response.totalPages);
+      setIsLoading(false);
+    };
+
+    loadCars();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [
+    filters.brand,
+    filters.rentalPrice,
+    filters.minMileage,
+    filters.maxMileage,
+  ]);
+
+  const fetchNextPage = async () => {
+    if (!hasNextPage || isFetchingNextPage) return;
+
+    setIsFetchingNextPage(true);
+    const nextPage = page + 1;
+
+    const response = await fetchCars(
+      {
+        brand: filters.brand || null,
+        price: filters.rentalPrice || null,
+        mileage: {
+          from: filters.minMileage ? Number(filters.minMileage) : null,
+          to: filters.maxMileage ? Number(filters.maxMileage) : null,
+        },
+      },
+      nextPage
+    );
+
+    addCars(response.cars);
+    setPage(nextPage);
+    setHasNextPage(response.page < response.totalPages);
+    setIsFetchingNextPage(false);
+  };
+
+  return (
+    <>
+      <Filters />
+      <CarList
+        cars={cars}
+        fetchNextPage={fetchNextPage}
+        isFetchingNextPage={isFetchingNextPage}
+        hasNextPage={hasNextPage}
+        isLoading={isLoading}
+      />
+    </>
+  );
+}

@@ -1,8 +1,7 @@
-import { Nunito_Sans } from 'next/font/google';
+import { Manrope } from 'next/font/google';
 
-export const nunitoSans = Nunito_Sans({
+export const manrope = Manrope({
   subsets: ['cyrillic', 'latin'],
-  weight: ['400', '500', '600', '700'], // Regular, Medium, SemiBold
-  display: 'swap',
-  variable: '--font-nunito-sans', // Для CSS
+  weight: ['400', '500', '600', '700'], 
+  variable: '--font-manrope',
 });

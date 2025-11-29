@@ -32,15 +32,6 @@ export default function Header() {
                 Catalog
               </Link>
             </li>
-
-            <li>
-              <Link
-                href="/favorites"
-                className={pathname === '/favorites' ? css.active : ''}
-              >
-                Favorites
-              </Link>
-            </li>
           </ul>
         </nav>
       </div>

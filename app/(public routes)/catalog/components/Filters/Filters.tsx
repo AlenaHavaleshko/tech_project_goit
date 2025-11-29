@@ -1,8 +1,9 @@
 'use client';
+
 import { useEffect, useState } from 'react';
 import { Formik, Form, Field } from 'formik';
 import { SingleValue } from 'react-select';
-import { useCarsStore } from '@/store/carsStore';
+import { useCarStore } from '@/store/carsStore';
 import { fetchBrands } from '@/services/filtersService';
 import SelectInput from '@/components/SelectInput/SelectInput';
 import styles from './Filters.module.css';
@@ -10,7 +11,6 @@ import styles from './Filters.module.css';
 interface OptionType {
   value: string | null;
   label: string;
-  _id: string | null;
 }
 
 interface FormValues {
@@ -21,41 +21,37 @@ interface FormValues {
 }
 
 export default function Filters() {
-  const setFilters = useCarsStore(state => state.setFilters);
+  const setFilters = useCarStore(state => state.editFilters);
 
   const [brandOptions, setBrandOptions] = useState<OptionType[]>([
-    { value: null, label: 'Choose a brand', _id: null },
+    { value: null, label: 'Choose a brand' },
   ]);
 
   const priceOptions: OptionType[] = [
-    { value: null, label: 'Choose a price', _id: null },
-    { value: '10', label: '10', _id: '10' },
-    { value: '20', label: '20', _id: '20' },
-    { value: '30', label: '30', _id: '30' },
-    { value: '40', label: '40', _id: '40' },
-    { value: '50', label: '50', _id: '50' },
-    { value: '60', label: '60', _id: '60' },
-    { value: '70', label: '70', _id: '70' },
-    { value: '80', label: '80', _id: '80' },
-    { value: '90', label: '90', _id: '90' },
-    { value: '100', label: '100', _id: '100' },
+    { value: null, label: 'Choose a price' },
+    ...Array.from({ length: 10 }, (_, i) => {
+      const price = (i + 1) * 10;
+      return {
+        value: String(price),
+        label: String(price),
+      };
+    }),
   ];
 
   useEffect(() => {
-    const loadFiltersData = async () => {
-      const brandsData = await fetchBrands();
-      const options: OptionType[] = [
-        { value: null, label: 'Choose a brand', _id: null },
-        ...brandsData.map((brand: string) => ({
-          value: brand,
-          label: brand,
-          _id: brand,
+    const loadBrands = async () => {
+      const brands = await fetchBrands();
+      const mapped = [
+        { value: null, label: 'Choose a brand' },
+        ...brands.map((b: string) => ({
+          value: b,
+          label: b,
         })),
       ];
-      setBrandOptions(options);
+      setBrandOptions(mapped);
     };
 
-    loadFiltersData();
+    loadBrands();
   }, []);
 
   const initialValues: FormValues = {
@@ -67,18 +63,17 @@ export default function Filters() {
 
   const handleSubmit = (values: FormValues) => {
     setFilters({
-      brand: values.brand.value,
-      price: values.price.value,
-      mileage: {
-        from: values.mileageFrom ? Number(values.mileageFrom) : null,
-        to: values.mileageTo ? Number(values.mileageTo) : null,
-      },
+      brand: values.brand?.value ?? '',
+      rentalPrice: values.price?.value ?? '',
+      minMileage: values.mileageFrom || '',
+      maxMileage: values.mileageTo || '',
     });
   };
 
   return (
     <div className={styles.filtersWrapper}>
       <h3>Filters</h3>
+
       <Formik
         initialValues={initialValues}
         onSubmit={handleSubmit}
@@ -87,45 +82,41 @@ export default function Filters() {
         {({ values, setFieldValue }) => (
           <Form className={styles.form}>
             <div className={styles.selectWrapper}>
-              <label htmlFor="brand">Car brand</label>
+              <label>Car brand</label>
               <SelectInput
                 options={brandOptions}
                 value={values.brand}
-                instanceId="brand-select"
-                onChange={(option: SingleValue<OptionType>) => {
-                  if (option) {
-                    setFieldValue('brand', option);
-                  }
-                }}
+                onChange={(opt: SingleValue<OptionType>) =>
+                  opt && setFieldValue('brand', opt)
+                }
+                instanceId="brand"
               />
             </div>
 
             <div className={styles.selectWrapper}>
-              <label htmlFor="price">Price / hour</label>
+              <label>Price / hour</label>
               <SelectInput
                 options={priceOptions}
                 value={values.price}
-                instanceId="price-select"
-                onChange={(option: SingleValue<OptionType>) => {
-                  if (option) {
-                    setFieldValue('price', option);
-                  }
-                }}
+                onChange={(opt: SingleValue<OptionType>) =>
+                  opt && setFieldValue('price', opt)
+                }
+                instanceId="price"
               />
             </div>
 
-            <div className={styles.inputWrapper} suppressHydrationWarning>
-              <label htmlFor="mileageFrom">Car mileage / km</label>
+            <div className={styles.inputWrapper}>
+              <label>Car mileage / km</label>
+
               <Field
-                id="mileageFrom"
                 type="number"
                 name="mileageFrom"
                 placeholder="From"
                 className={styles.input}
                 suppressHydrationWarning
               />
+
               <Field
-                id="mileageTo"
                 type="number"
                 name="mileageTo"
                 placeholder="To"

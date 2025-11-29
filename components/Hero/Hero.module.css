@@ -1,7 +1,7 @@
 /* Hero Section */
 .section {
   position: relative;
-  width: 100%;
+  width: 100vw;
   min-height: 812px;
   overflow: hidden;
   padding-top: 196px;
@@ -33,6 +33,7 @@
   background-position: center;
   background-repeat: no-repeat;
   z-index: 0;
+  overflow: hidden;
 }
 
 /* Content */

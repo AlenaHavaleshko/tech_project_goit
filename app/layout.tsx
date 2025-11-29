@@ -1,86 +1,51 @@
-// app/layout.tsx
-
-import 'modern-normalize';
 import type { Metadata } from 'next';
+import { manrope } from './fonts';
 import { Toaster } from 'react-hot-toast';
-import { nunitoSans } from './fonts';
-import TanStackProvider from '../components/TanStackProvider/TanStackProvider';
+import TanStackProvider from '@/components/TanStackProvider/TanStackProvider';
+import Header from '@/components/Header/Header';
 import './globals.css';
+import css from '@/app/Home.module.css';
+import 'modern-normalize';
 
 export const metadata: Metadata = {
-  title: 'Podorozhnyky',
-  description:
-    'A platform for searching travel places and sharing your own experience',
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'
+  ),
+  title: 'RentalCar App',
+  description: 'A user-friendly platform for effortless and convenient car rentals.',
   icons: {
-    icon: '/favicon.ico',
+    icon: '/favicon.ico.svg',
   },
   openGraph: {
-    title: 'Podorozhnyky',
-    description:
-      'A platform for searching travel places and sharing your own experience',
+    title: 'RentalCar App',
+    description: 'A user-friendly platform for effortless and convenient car rentals.',
     url: 'https://localhost:3000',
     images: [
       {
-        url: '', // placeholder
+        url: '/public/hero.png',
         width: 1200,
         height: 630,
-        alt: 'Podorozhnyky - A platform for searching travel places and sharing your own experience',
+        alt: 'A user-friendly platform for effortless and convenient car rentals.',
       },
     ],
   },
 };
 
-type RootLayoutProps = {
+export default function MainLayout({
+  children,
+}: Readonly<{
   children: React.ReactNode;
-};
-
-export default function RootLayout({ children }: RootLayoutProps) {
+}>) {
   return (
-    <html lang="uk" suppressHydrationWarning>
-      <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-      try {
-        const path = window.location.pathname || '';
-        const isAuth = path.startsWith('/auth');
-        const savedTheme = localStorage.getItem('theme');
-       const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        let theme;
-        if (savedTheme === 'color-scheme-3') {
-          theme = 'color-scheme-3';
-        } 
-        else {
-          if (prefersDark) {
-            theme = 'color-scheme-3';
-          } else {
-            theme = isAuth ? 'color-scheme-1' : 'color-scheme-2';
-          }
-        }
-        document.documentElement.dataset.theme = theme;
-        const mq = window.matchMedia('(prefers-color-scheme: dark)');
-        mq.addEventListener('change', e => {
-          if (!localStorage.getItem('theme') || localStorage.getItem('theme') !== 'color-scheme-3') {
-            const newTheme = e.matches
-              ? 'color-scheme-3'
-              : (window.location.pathname.startsWith('/auth') ? 'color-scheme-1' : 'color-scheme-2');
-            document.documentElement.dataset.theme = newTheme;
-          }
-        });
-      } catch (e) {
-        console.error('Theme init failed', e);
-      }
-    `,
-          }}
-        />
-      </head>
-      <body className={`${nunitoSans.variable}`}>
+    <html lang="en">
+      <body className={`${manrope.variable}`}>
         <TanStackProvider>
-          {/* <Header /> */}
-          {children}
           <Toaster position="top-right" />
+          <Header />
+          <main className={css.main}>{children}</main>
         </TanStackProvider>
       </body>
     </html>
   );
 }
+  

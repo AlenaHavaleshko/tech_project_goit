@@ -1,49 +1,39 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import { CarsStore } from "@/types/carsStore";
-import { CarFilters } from "@/types/filters";
+import { CarStore } from "@/types/carsStore";
 import { Car } from "@/types/car";
 
-export const useCarsStore = create<CarsStore>()(
+export const initialFilters = {
+  brand: '',
+  rentalPrice: '',
+  minMileage: '',
+  maxMileage: '',
+};
+
+export const useCarStore = create<CarStore>()(
   persist(
-    (set, get) => ({
-      cars: [],
-      filters: {
-        brand: null,
-        price: null,
-        mileage: { from: null, to: null }
-      } as CarFilters,
-      page: 1,
-      favorites: [],
-
-      setCars: (cars: Car[]) => set({ cars }),
-
-      addCars: (cars: Car[]) =>
-        set((state) => ({
-          cars: [...state.cars, ...cars],
-        })),
-
-      setFilters: (newFilters) =>
-        set((state) => ({
-          filters: { ...state.filters, ...newFilters },
-          cars: [],
-          page: 1,
-        })),
-
-      setPage: (page) => set({ page }),
-
-      toggleFavorite: (id: string) => {
-        const favorites = get().favorites;
-        const updated = favorites.includes(id)
-          ? favorites.filter((f) => f !== id)
-          : [...favorites, id];
-
-        set({ favorites: updated });
-      },
-    }),
+    set => {
+      return {
+        cars: [],
+        addCars: (cars: Car[]) =>
+          set(state => ({ cars: [...state.cars, ...cars] })),
+        removeCars: () => set({ cars: [] }),
+        filters: initialFilters,
+        editFilters: (filters: Partial<CarStore['filters']>) =>
+          set(state => ({ filters: { ...state.filters, ...filters } })),
+        removeFilters: () => set({ filters: initialFilters }),
+        favorites: [],
+        addToFavorites: (car: Car) =>
+          set(state => ({ favorites: [...state.favorites, car] })),
+        removeFromFavorites: (carId: string) =>
+          set(state => ({
+            favorites: state.favorites.filter(car => car.id !== carId),
+          })),
+      };
+    },
     {
-      name: "cars-store",
-      partialize: (state) => ({
+      name: 'car-store',
+      partialize: state => ({
         favorites: state.favorites,
         filters: state.filters,
       }),

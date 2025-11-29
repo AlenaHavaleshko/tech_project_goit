@@ -1,15 +1,18 @@
-import { Car } from "./car";
-import { CarFilters } from "./filters";
+import { Car } from "@/types/car";
 
-export type CarsStore = {
+export type CarStore = {
   cars: Car[];
-  filters: CarFilters;
-  page: number;
-  favorites: string[];
-
-  setCars: (cars: Car[]) => void;
   addCars: (cars: Car[]) => void;
-  setFilters: (filters: Partial<CarFilters>) => void;
-  setPage: (page: number) => void;
-  toggleFavorite: (id: string) => void;
+  removeCars: () => void;
+  filters: {
+    brand: string;
+    rentalPrice: string;
+    minMileage: string;
+    maxMileage: string;
+  };
+  editFilters: (filters: Partial<CarStore['filters']>) => void;
+  removeFilters: () => void;
+  favorites: Car[];
+  addToFavorites: (car: Car) => void;
+  removeFromFavorites: (carId: string) => void;
 };

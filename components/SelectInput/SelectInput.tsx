@@ -3,10 +3,9 @@ import Select, { SingleValue } from 'react-select';
 interface OptionType {
   value: string | null;
   label: string;
-  _id: string | null;
 }
 
-interface SelectInputProps {
+export interface SelectInputProps {
   options: OptionType[];
   onChange: (option: SingleValue<OptionType>) => void;
   value: OptionType;
@@ -31,7 +30,7 @@ const SelectInput = ({
         onChange(option);
       }}
       styles={{
-        control: (base, state) => ({
+        control: base => ({
           ...base,
           backgroundColor: '#f7f7fb',
           border: 'none',
