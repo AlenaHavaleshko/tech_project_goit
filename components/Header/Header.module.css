@@ -1,0 +1,56 @@
+.header {
+  background-color: #f6f8fc;
+  border-bottom: 1px solid #dce1e7;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  padding: 14px 0;
+}
+
+/* !!! если у тебя container глобальный — удаляй этот блок */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Logo */
+.logo {
+  font-size: 22px;
+  font-weight: 700;
+  text-decoration: none;
+  color: #111;
+}
+
+.logo span {
+  color: #1d63ff;
+}
+
+/* Navigation */
+.nav ul {
+  display: flex;
+  gap: 28px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Стили применяются к Link внутри nav */
+.nav :global(a) {
+  text-decoration: none;
+  color: #232323;
+  font-size: 16px;
+  transition: color 0.25s ease;
+}
+
+/* Hover */
+.nav :global(a:hover) {
+  color: #1d63ff;
+}
+
+.active {
+  color: #1d63ff !important;
+  font-weight: 600;
+}
