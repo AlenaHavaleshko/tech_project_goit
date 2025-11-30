@@ -50,13 +50,13 @@
 
 .inputWrapper label {
   font-size: 14px;
-  color: #8a8a89;
+  color: var(--color-text-placeholder);
   font-weight: 500;
 }
 
 .selectWrapper label {
   font-size: 14px;
-  color: #8a8a89;
+  color: var(--color-text-placeholder);
   font-weight: 500;
 }
 
@@ -65,9 +65,9 @@
   padding: 14px 18px;
   border: none;
   border-radius: 14px;
-  background-color: #f7f7f7;
+  background-color: var(--color-light-grey);
   font-size: 18px;
-  color: #121417;
+  color: var(--color-dark-blue);
   outline: none;
   transition: background-color 0.3s;
   appearance: none;
@@ -87,14 +87,14 @@
 }
 
 .input::placeholder {
-  color: #121417;
+  color: var(--color-dark-blue);
 }
 
 .select:hover,
 .select:focus,
 .input:hover,
 .input:focus {
-  background-color: #f0f0f4;
+  background-color: var(--color-light-grey);
 }
 
 .inputWrapper label {
@@ -107,8 +107,8 @@
 .searchButton {
   display: inline-block;
   padding: 12px 51px;
-  background-color: #3470ff;
-  color: #ffffff;
+  background-color: var(--color-light-blue);
+  color: var(--color-white);
   border: none;
   border-radius: 12px;
   font-size: 16px;
@@ -123,7 +123,7 @@
 }
 
 .searchButton:hover {
-  background-color: #0b44cd;
+  background-color: var(--color-medium-blue);
 }
 
 @media (max-width: 768px) {

@@ -99,14 +99,14 @@ const CarDetails = ({ vehicle }: CarDetailsProps) => {
               >
                 <svg className={styles.favoriteIcon}>
                   <use
-                    href={`/sprite.svg#${favorites.some(favCar => favCar.id === vehicle.id) ? 'icon-heart-favorite' : 'icon-heart'}`}
+                    href={`/symbol-defs.svg#${favorites.some(favCar => favCar.id === vehicle.id) ? 'icon-heart-favorite' : 'icon-heart'}`}
                   />
                 </svg>
               </button>
             </div>
 
             <div className={styles.formSection}>
-              <h2 className={styles.formTitle}>Book your vehicle now</h2>
+              <h2 className={styles.formTitle}>Book your car now</h2>
               <p className={styles.formSubtitle}>
                 Stay connected! We are always ready to assist you.
               </p>
@@ -186,7 +186,7 @@ const CarDetails = ({ vehicle }: CarDetailsProps) => {
                       disabled={isSubmitting}
                       className={styles.submitButton}
                     >
-                      {isSubmitting ? 'Sending...' : 'Submit'}
+                      {isSubmitting ? 'Sending...' : 'Send'}
                     </button>
                   </Form>
                 )}
@@ -204,7 +204,7 @@ const CarDetails = ({ vehicle }: CarDetailsProps) => {
             <div className={styles.carMeta}>
               <div className={styles.metaItem}>
                 <svg className={styles.metaIcon}>
-                  <use href="/sprite.svg#icon-location" />
+                  <use href="/symbol-defs.svg#icon-Location" />
                 </svg>
                 <span className={styles.metaText}>
                   {vehicle.address.split(',').slice(1).join(',').trim()}
@@ -229,7 +229,7 @@ const CarDetails = ({ vehicle }: CarDetailsProps) => {
                 {rentalConditions.map((condition, index) => (
                   <li key={index} className={styles.conditionItem}>
                     <svg className={styles.conditionIcon}>
-                      <use href="/sprite.svg#icon-check-circle" />
+                      <use href="/symbol-defs.svg#icon-check-circle" />
                     </svg>
                     <span className={styles.conditionText}>
                       {condition.label}
@@ -247,23 +247,23 @@ const CarDetails = ({ vehicle }: CarDetailsProps) => {
               </ul>
             </div>
 
-            <h2 className={styles.specsTitle}>Vehicle Specifications:</h2>
+            <h2 className={styles.specsTitle}>Car Specifications:</h2>
             <ul className={styles.carDetailsList}>
               <li className={styles.detailRow}>
                 <svg className={styles.specIcon}>
-                  <use href="/sprite.svg#icon-calendar" />
+                  <use href="/symbol-defs.svg#icon-calendar" />
                 </svg>
                 <span className={styles.detailItem}>Year: {vehicle.year}</span>
               </li>
               <li className={styles.detailRow}>
                 <svg className={styles.specIcon}>
-                  <use href="/sprite.svg#icon-car" />
+                  <use href="/symbol-defs.svg#icon-car" />
                 </svg>
                 <span className={styles.detailItem}>Type: {vehicle.type}</span>
               </li>
               <li className={styles.detailRow}>
                 <svg className={styles.specIcon}>
-                  <use href="/sprite.svg#icon-fuel-pump" />
+                  <use href="/symbol-defs.svg#icon-fuel-pump" />
                 </svg>
                 <span className={styles.detailItem}>
                   Fuel Consumption: {vehicle.fuelConsumption}
@@ -271,7 +271,7 @@ const CarDetails = ({ vehicle }: CarDetailsProps) => {
               </li>
               <li className={styles.detailRow}>
                 <svg className={styles.specIcon}>
-                  <use href="/sprite.svg#icon-gear" />
+                  <use href="/symbol-defs.svg#icon-gear" />
                 </svg>
                 <span className={styles.detailItem}>
                   Engine Size: {vehicle.engineSize}
@@ -287,7 +287,7 @@ const CarDetails = ({ vehicle }: CarDetailsProps) => {
                 {vehicle.accessories.map((accessory, index) => (
                   <li key={`acc-${index}`} className={styles.specsRow}>
                     <svg className={styles.specIcon}>
-                      <use href="/sprite.svg#icon-check-circle" />
+                      <use href="/symbol-defs.svg#icon-check-circle" />
                     </svg>
                     <span className={styles.specItem}>{accessory}</span>
                   </li>
@@ -295,7 +295,7 @@ const CarDetails = ({ vehicle }: CarDetailsProps) => {
                 {vehicle.functionalities.map((functionality, index) => (
                   <li key={`func-${index}`} className={styles.specsRow}>
                     <svg className={styles.specIcon}>
-                      <use href="/sprite.svg#icon-check-circle" />
+                      <use href="/symbol-defs.svg#icon-check-circle" />
                     </svg>
                     <span className={styles.specItem}>{functionality}</span>
                   </li>

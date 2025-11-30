@@ -29,12 +29,12 @@
 .loadMoreButton {
   display: block;
   background-color: transparent;
-  border: 1px solid #3470FF;
+  border: 1px solid var(--color-light-blue);
   font-weight: 500;
   border-radius: 12px;
   font-size: 16px;
   line-height: 1.5;
-  color: #101828;
+  color: var(--color-dark-blue);
   text-decoration: none;
   padding: 12px 38px;
   margin: 0 auto;
@@ -45,10 +45,10 @@
 }
 
 .loadMoreButton:hover {
-  color: #0B44CD;
+  color: var(--color-medium-blue);
 }
 
 .loadMoreButton:disabled {
-  color: #ccc;
+  color: var(--color-light-grey);
   cursor: not-allowed;
 }

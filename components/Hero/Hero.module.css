@@ -15,7 +15,6 @@
   }
 }
 
-/* Background Image */
 .backgroundImage {
   position: absolute;
   top: 0;
@@ -36,7 +35,6 @@
   overflow: hidden;
 }
 
-/* Content */
 .content {
   display: flex;
   flex-direction: column;
@@ -45,7 +43,6 @@
   padding-top: 700px;
 }
 
-/* Title */
 .title {
   font-family: var(--font-family);
   font-weight: 700;
@@ -58,7 +55,6 @@
   text-align: center;
 }
 
-/* Description */
 .description {
   font-family: var(--font-family);
   font-weight: 600;
@@ -68,7 +64,6 @@
   margin-bottom: 40px;
 }
 
-/* Button */
 .button {
   font-family: var(--font-family);
   display: block;
@@ -77,8 +72,8 @@
   font-size: 16px;
   line-height: 1.5;
   color: var(--color-white);
-  background-color: var(--color-royal-blue);
-  border: 1px solid var(--color-royal-blue);
+  background-color: var(--color-light-blue);
+  border: 1px solid var(--color-light-blue);
   border-radius: 12px;
   padding: 12px 88px;
   width: 100%;
@@ -94,8 +89,8 @@
 }
 
 .button:hover {
-  background-color: var(--color-royal-blue-dark);
-  border-color: var(--color-royal-blue-dark);
+  background-color: var(--color-medium-blue);
+  border-color: var(--color-medium-blue);
 }
 
 .button:active {

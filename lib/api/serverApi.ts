@@ -20,8 +20,14 @@ export const fetchServerCars = async (
 };
 
 export const fetchCarByIdServer = async (id: string): Promise<Car> => {
-  const response = await nextServer.get<Car>(`/cars/${id}`);
-  return response.data;
+  try {
+    const response = await nextServer.get<Car>(`/cars/${id}`);
+    return response.data;
+  } catch (error) {
+    const axiosError = error as { response?: { status?: number }; message?: string };
+    console.error(`Failed to fetch car with id ${id}:`, axiosError.response?.status || axiosError.message);
+    throw error;
+  }
 };
 
 export const fetchCarBrandsServer = async (): Promise<string[]> => {

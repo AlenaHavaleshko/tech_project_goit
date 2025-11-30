@@ -21,9 +21,11 @@ export async function GET(request: NextRequest, { params }: CarInfoParams) {
     const car = response.data;
     return NextResponse.json(car, { status: 200 });
   } catch (error) {
+    const axiosError = error as { response?: { status?: number }; message?: string };
+    console.error(`API route error fetching car ${id}:`, axiosError.response?.status || axiosError.message);
     return NextResponse.json(
       { error: 'Error occurred while fetching car data' },
-      { status: 500 }
+      { status: axiosError.response?.status || 500 }
     );
   }
 }

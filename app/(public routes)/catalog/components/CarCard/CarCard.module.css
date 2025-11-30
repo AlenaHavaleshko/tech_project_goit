@@ -45,14 +45,14 @@
 .favoriteIcon {
   width: 18px;
   height: 18px;
-  stroke: #FFFFFF;
+  stroke: var(--color-white);
   fill: transparent;
   transition: all 0.3s ease;
 }
 
 .favoriteBtn.active .favoriteIcon {
-  stroke: #3470FF;
-  fill: #3470FF;
+  stroke: var(--color-light-blue);
+  fill: var(--color-light-blue);
 }
 
 .content {
@@ -65,7 +65,7 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  color: #121417;
+  color: var(--color-dark-blue);
   font-weight: 500;
   line-height: 1.5;
   font-size: 16px;
@@ -77,7 +77,7 @@
   font-size: 16px;
   font-weight: 500;
   line-height: 1.5;
-  color: #121417;
+  color: var(--color-dark-blue);
   margin: 0;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -86,14 +86,14 @@
 }
 
 .model {
-  color: #3470ff;
+  color: var(--color-light-blue);
 }
 
 .price {
   font-size: 16px;
   font-weight: 500;
   line-height: 1.5;
-  color: #121417;
+  color: var(--color-dark-blue);
   white-space: nowrap;
   margin-left: auto;
 }
@@ -144,11 +144,11 @@
   width: 100%;
   border-radius: 12px;
   padding: 12px 0;
-  background-color: #3470FF;
+  background-color: var(--color-light-blue);
   font-weight: 600;
   font-size: 14px;
   line-height: 1.43;
-  color: #FFFFFF;
+  color: var(--color-white);
   text-align: center;
   text-decoration: none;
   transition: background-color 0.3s ease;
@@ -157,5 +157,5 @@
 }
 
 .readMoreBtn:hover {
-  background-color: #0B44CD;
+  background-color: var(--color-medium-blue);
 }

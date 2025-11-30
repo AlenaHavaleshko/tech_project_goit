@@ -17,9 +17,11 @@ export async function GET() {
     const data = response.data;
     return NextResponse.json(data);
   } catch (error) {
+    const axiosError = error as { response?: { status?: number }; message?: string };
+    console.error('API route error fetching brands:', axiosError.response?.status || axiosError.message);
     return NextResponse.json(
       { error: 'Internal server error' },
-      { status: 500 }
+      { status: axiosError.response?.status || 500 }
     );
   }
 }

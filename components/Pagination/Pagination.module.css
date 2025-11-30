@@ -24,7 +24,7 @@
   width: 100%;
   height: 100%;
   text-decoration: none;
-  color: #0d6efd;
+  color: var(--color-light-blue);
   font-size: 14px;
 }
 
@@ -33,15 +33,15 @@
 }
 
 .pagination li.active:hover {
-  background-color: #0d6efd;
+  background-color: var(--color-medium-blue);
 }
 
 .active {
-  background-color: #0d6efd;
-  border-color: #0d6efd;
+  background-color: var(--color-medium-blue);
+  border-color: var(--color-medium-blue);
 }
 
 .active a {
-  color: #fff !important;
+  color: var(--color-white) !important;
   font-weight: 500;
 }

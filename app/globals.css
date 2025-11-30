@@ -1,9 +1,12 @@
 :root {
-  --opacity-neutral-darkest-20: rgba(0, 0, 0, 0.2);
-  --font-family: 'Manrope', sans-serif;
-  --color-white: #ffffff;
-  --color-royal-blue: #4169e1;
-  --color-royal-blue-dark: #365cab;
+  --color-dark-blue: #101828;
+  --color-text-placeholder: #8E929A;
+  --color-light-blue: #3470FF;
+  --color-medium-blue: #0B44CD;
+  --color-white: #FFFFFF;
+  --color-grey: #475467;
+  --color-light-grey: #F7F7F7;
+  --color-light-border: #DADDE1;
 }
 
 html,
@@ -11,12 +14,12 @@ body {
   margin: 0;
   padding: 0;
   min-height: 100%;
-  font-family: var(--font-manrope), 'Manrope', sans-serif;
+  font-family: var(--font-manrope), sans-serif;
   font-size: 18px;
   font-weight: 400;
   line-height: 1.5;
-  background-color: var(--background);
-  color: var(--text);
+  background-color: var(--color-white);
+  color: var(--color-dark-blue);
   transition:
     background-color 0.3s ease,
     color 0.3s ease;

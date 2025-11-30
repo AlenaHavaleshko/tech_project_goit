@@ -38,7 +38,7 @@ export default function MainLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={manrope.className}>
+      <body className={`${manrope.variable}`}>
         <TanStackProvider>
           <Toaster position="top-right" />
           <Header />

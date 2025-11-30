@@ -4,19 +4,21 @@
 
 .content {
   display: flex;
-  flex-direction: column;
-  gap: 24px;
+  flex-direction: row;
+  gap: 72px;
 }
 
 .leftColumn {
   display: flex;
   flex-direction: column;
   gap: 40px;
+  width: 640px;
 }
 
 .rightColumn {
   display: flex;
   flex-direction: column;
+  width: 488px;
 }
 
 /* Image Section */
@@ -65,7 +67,7 @@
   font-size: 18px;
   font-weight: 500;
   line-height: 1.33;
-  color: var(--main);
+  color: var(--color-dark-blue);
   display: flex;
   flex-wrap: nowrap;
   align-items: center;
@@ -74,14 +76,14 @@
 }
 
 .carModel {
-  color: var(--button);
+  color: var(--color-dark-blue);
 }
 
 .carId {
   font-size: 16px;
   font-weight: 500;
   line-height: 1.25;
-  color: var(--gray);
+  color: var(--color-grey);
   width: 204px;
   max-height: 20px;
   overflow-x: hidden;
@@ -113,18 +115,18 @@
   gap: 6px;
   font-size: 14px;
   line-height: 1.5;
-  color: var(--gray);
+  color: var(--color-grey);
 }
 
 .metaIcon {
   width: 16px;
   height: 16px;
   flex-shrink: 0;
-  fill: var(--gray);
+  fill: var(--color-grey);
 }
 
 .metaText {
-  color: var(--gray);
+  color: var(--color-grey);
 }
 
 .priceSection {
@@ -138,7 +140,7 @@
   font-size: 24px;
   font-weight: 500;
   line-height: 1.25;
-  color: var(--button);
+  color: var(--color-light-blue);
 }
 
 /* Car Details */
@@ -155,7 +157,7 @@
   gap: 8px;
   font-size: 16px;
   line-height: 1.25;
-  color: var(--gray);
+  color: var(--color-grey);
   min-height: 21px;
 }
 
@@ -167,7 +169,7 @@
   width: 17px;
   height: 16px;
   flex-shrink: 0;
-  fill: var(--main);
+  fill: var(--color-dark-blue);
 }
 
 .detailItem {
@@ -176,11 +178,11 @@
   font-weight: 500;
   font-size: 16px;
   line-height: 1.25;
-  color: var(--main);
+  color: var(--color-dark-blue);
 }
 
 .detailDivider {
-  color: var(--gray-light);
+  color: var(--color-dark-blue);
 }
 
 /* Description */
@@ -188,7 +190,7 @@
   font-weight: 500;
   font-size: 16px;
   line-height: 1.25;
-  color: var(--main);
+  color: var(--color-dark-blue);
   margin-bottom: 68px;
   max-height: 40px;
   overflow-x: hidden;
@@ -210,7 +212,7 @@
   font-weight: 600;
   font-size: 20px;
   line-height: 1.2;
-  color: var(--main);
+  color: var(--color-dark-blue);
   margin-bottom: 20px;
 }
 
@@ -224,7 +226,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  color: var(--gray);
+  color: var(--color-grey);
 }
 
 .specItem {
@@ -237,7 +239,7 @@
 }
 
 .specDivider {
-  color: var(--gray-light);
+  color: var(--color-dark-blue);
   margin-left: 6px;
 }
 
@@ -252,7 +254,7 @@
   font-weight: 600;
   font-size: 20px;
   line-height: 1.2;
-  color: var(--main);
+  color: var(--color-dark-blue);
   margin-bottom: 20px;
 }
 
@@ -269,18 +271,18 @@
   height: 17px;
   font-size: 14px;
   line-height: 1.5;
-  color: var(--main);
+  color: var(--color-dark-blue);
 }
 
 .conditionIcon {
   width: 17px;
   height: 16px;
   flex-shrink: 0;
-  fill: var(--main);
+  fill: var(--color-dark-blue);
 }
 
 .conditionText {
-  color: var(--main);
+  color: var(--color-dark-blue);
   font-weight: 500;
   font-size: 16px;
   line-height: 1.25;
@@ -293,7 +295,7 @@
   max-width: 168px;
   padding: 12px 50px;
   border-radius: 12px;
-  background-color: var(--button);
+  background-color: var(--color-light-blue);
   color: var(--white);
   font-size: 14px;
   font-weight: 600;
@@ -304,7 +306,7 @@
 }
 
 .rentalButton:hover {
-  background-color: var(--button-hover);
+  background-color: var(--color-medium-blue);
 }
 
 .rentalButton:active {
@@ -355,9 +357,9 @@
   padding: 14px 20px;
   border: none;
   border-radius: 12px;
-  background-color: var(--inputs);
+  background-color: var(--color-light-grey);
   font-size: 16px;
-  color: var(--main);
+  color: var(--color-dark-blue);
   outline: none;
   transition: all 0.2s ease;
   font-weight: 500;
@@ -365,17 +367,23 @@
 }
 
 .formInput::placeholder {
-  color: var(--gray);
-}
+  font-weight: 500;    
+  font-style: normal;
+  font-size: 16px;      
+  line-height: 20px;    
+  letter-spacing: 0;      
+  color: var(--color-text-placeholder);      
+  vertical-align: middle; 
+} 
 
 .formInput:focus {
-  background-color: var(--white);
-  box-shadow: 0 0 0 2px var(--button);
+  background-color: var(--color-white);
+  box-shadow: 0 0 0 2px var(--color-light-blue);
 }
 
 .formInput.inputError {
   border: 1px solid #ef5050;
-  background-color: var(--white);
+  background-color: var(--color-white);
 }
 
 /* React DatePicker Styles */
@@ -393,13 +401,13 @@
 
 .formGroup :global(.react-datepicker) {
   font-family: inherit;
-  border: 1px solid var(--button);
+  border: 1px solid var(--color-light-blue);
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .formGroup :global(.react-datepicker__header) {
-  background-color: var(--white);
+  background-color: var(--color-white);
   border-bottom: none;
   width: 252px;
   margin: 0 auto;
@@ -430,7 +438,7 @@
 }
 
 .formGroup :global(.react-datepicker__day-names) {
-  border-bottom: 1px solid var(--button);
+  border-bottom: 1px solid var(--color-light-blue);
   padding-bottom: 12px;
   margin-bottom: 12px;
 }
@@ -470,14 +478,14 @@
 }
 
 .formGroup :global(.react-datepicker__day:hover) {
-  background-color: var(--inputs);
-  color: var(--main);
+  background-color: var(--color-light-grey);
+  color: var(--color-dark-blue);
   border-radius: 32px;
 }
 
 .formGroup :global(.react-datepicker__day--selected),
 .formGroup :global(.react-datepicker__day--keyboard-selected) {
-  background-color: var(--button);
+  background-color: var(--color-light-blue);
   color: var(--white);
   font-weight: 600;
   display: flex;
@@ -487,7 +495,7 @@
 }
 
 .formGroup :global(.react-datepicker__day--disabled) {
-  color: var(--gray-light);
+  color: var(--color-light-border);
   cursor: not-allowed;
 }
 
@@ -522,7 +530,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: var(--button);
+  background-color: var(--color-light-blue);
   -webkit-mask-size: contain;
   mask-size: contain;
   -webkit-mask-repeat: no-repeat;
@@ -559,8 +567,8 @@
   max-width: 156px;
   padding: 12px 0;
   border-radius: 12px;
-  background-color: var(--button);
-  color: var(--white);
+  background-color: var(--color-light-blue);
+  color: var(--color-white);
   font-size: 16px;
   font-weight: 600;
   line-height: 1.25;
@@ -571,7 +579,7 @@
 }
 
 .submitButton:hover:not(:disabled) {
-  background-color: var(--button-hover);
+  background-color: var( --color-medium-blue);
 }
 
 .submitButton:disabled {

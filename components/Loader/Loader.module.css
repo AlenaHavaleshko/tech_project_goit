@@ -19,15 +19,15 @@
 
 .text {
   font-size: 1.2rem;
-  color: var(--text);
+  color: var(--color-dark-blue);
   font-weight: 500;
 }
 
 .spinner {
   width: 48px;
   height: 48px;
-  border: 5px solid var(--accent);
-  border-top-color: var(--border);
+  border: 5px solid var(--color-light-blue);
+  border-top-color: var(--color-light-grey);
   border-radius: 50%;
   animation: spin 0.9s linear infinite;
 }
