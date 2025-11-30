@@ -5,6 +5,7 @@ import { useCarStore } from '@/store/carsStore';
 import fetchCars from '@/services/carsService';
 import Filters from './components/Filters/Filters';
 import CarList from './components/CarList/CarList';
+import Loader from '@/components/Loader/Loader';
 
 export default function CatalogClientPage() {
   const cars = useCarStore(state => state.cars);
@@ -84,6 +85,7 @@ export default function CatalogClientPage() {
 
   return (
     <>
+      {isLoading && <Loader />}
       <Filters />
       <CarList
         cars={cars}
