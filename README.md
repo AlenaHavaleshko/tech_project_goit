@@ -1,82 +1,21 @@
-# Podorozhnyky App🌍
-
-![License](https://img.shields.io/badge/license-MIT-blue)
-![Node](https://img.shields.io/badge/node-v18-green)
-![Next.js](https://img.shields.io/badge/next.js-15-black)
-
+### CarRental Next.js
 ---
 
-## Table of Contents
-- [Project Title](##✨project-title)
-- [About the Project](##✨-about-the-project)
-- [Installation](##installation)
-- [Tech Stack](##🛠️-tech-stack)
-- [Features](##🚀-features)
-- [Pages](##pages)
-- [API Documentation](##📄-api-documentation)
-- [Demo](##🎬-demo)
-- [Environment Variables](#env-environment-variables)
-- [Deploy](##☁️-deploy-backend-nodejs--mongodb-to-versel)
-- [MongoDB Atlas](##🍃-mongodb-atlas)
-- [Contributing](##🤝-contributing)
+### ✨ Project Title
+CarRental Next.js  is a web application for car rentals built with Next.js. The application allows users to browse available cars, filter them by various parameters, view details of each car, and make a booking.
 
----
+### ✨ About the Project 
+Browse available cars in the catalog
 
-## ✨ Project Title
-Podorozhnyky is a platform for people who live through their travels.
+Filter cars by brand, model, price, body type, and location
 
-## ✨ About the Project 
-This project is designed for travelers and anyone who wants to share their adventures.
-The platform allows users to:
-   Publish their own travel stories
-   Browse stories from other users
-   Save favorite stories
-   Maintain a traveler profile
-   Connect with new people and discover new destinations
+Car detail pages with photos, specifications, and pricing
 
-### Installation
-  ## Frontend (Next.js)
+Book a car with availability check
 
-   # Clone the repository
-     git clone <https://github.com/AlexNovickiy/nextjs-project-team-1-podorozhnyky.git>
+Responsive design optimized for mobile and desktop devices
 
-
-   # Navigate to the frontend directory:
-     cd nextjs-project-team-1-podorozhnyky
-
-   # 🖥️ Running the Project (Frontend)
-     ```bash
-     npm install 
-
-     npm run dev
-     # or
-     yarn dev
-     # or
-     pnpm dev
-     # or
-     bun dev
-     ```
-
-  ## Backend (Node.js)
-
-   # Clone the repository
-      git clone <https://github.com/AlexNovickiy/node-js-project-team-1.git>
-
-   # Navigate to the backend directory:
-      cd nodejs-hw-01
-
-   # 🖥️ Running the Project (Backend)
-    ```bash
-    npm install 
-
-    npm run dev
-    # or
-    yarn dev
-    # or
-    pnpm dev
-    # or
-    bun dev
-    ```
+Integration with external APIs or an internal database for fleet management
 
 ## 🛠️ Tech Stack
   # Frontend:
@@ -87,127 +26,102 @@ The platform allows users to:
     Formik + Yup
     Axios
     React Hot Toast
-    TailwindCSS
     React Select
     React Icons
     use-debounce
     modern-normalize
 
-  # Backend:
-    Node.js + Express
-    MongoDB + Mongoose
-    JWT
-    bcrypt
-    Cloudinary
-    Multer
-    Nodemailer (Brevo)
-    Google Auth Library
-    dotenv
-    pino-http
+### Installation
+  1. Clone the repository:
 
-## 🚀 Features
+git clone https://github.com/AlenaHavaleshko/tech_project_goit
+cd car-rental-next-app
 
-  # 🔐 Authentication
-    Email + password login/register
-    Google OAuth
-    Protected client routes
-    JWT authentication
-    Profile management 
+   2. Install dependencies using npm or yarn:
 
-  # 📝 Stories
-    Create, edit, delete stories
-    Photo upload via Cloudinary
-    Image validation
-    Pagination (server-side)
-    Story details page
-    Save / unsave stories
-    Form validation (Formik + Yup)
+npm install
+# or
+yarn install
 
-   # 👤 Travelers
-    List of travelers
-    Pagination “Show more”
-    Public traveler profile
-    View their stories
+### Environment Setup:
 
-## Pages
-    /auth/register
-    /auth/login
-    /
-    /stories
-    /stories/[storyId]
-    /stories/create
-    /stories/[storyId]/edit
-    /travellers
-    /travellers/[travellerId]
-    /profile
-    /edit
+Create a .env.local file in the root of the project and add the necessary environment variables. Example:
 
-## 📄 API Documentation
-    OpenAPI 3.0
-    Auto-generated Swagger JSON
-    Preview via Redocly
+# Example variables — replace with your actual values
+NEXT_PUBLIC_API_URL=https://api.yourdomain.com
+DATABASE_URL=postgresql://user:password@localhost:5432/database
+NEXTAUTH_SECRET=your-secret-key
 
-## Demo 🎬-demo  
-    https://nextjs-project-team-1-podorozhnyky.vercel.app/
 
-## - Environment Variables
-  # Backend
-    PORT=
-    MONGODB_USER=
-    MONGODB_PASSWORD=
-    MONGODB_URL=
-    MONGODB_DB=
+The variables depend on how your backend and authentication are set up. Make sure to update them according to your environment.
 
-    SMTP_HOST=
-    SMTP_PORT=
-    SMTP_USER=
-    SMTP_PASSWORD=
-    SMTP_FROM=
+### Running Locally:
 
-    JWT_SECRET=
-    APP_DOMAIN=
+For development mode with hot reloading:
 
-    CLOUD_NAME=
-    CLOUDINARY_API_KEY=
-    CLOUDINARY_API_SECRET=
-    ENABLE_CLOUDINARY=
+npm run dev
+# or
+yarn dev
 
-    GOOGLE_AUTH_CLIENT_ID=
-    GOOGLE_AUTH_CLIENT_SECRET=
-    CORS_ORIGIN=
 
-  # frontend
-    NEXT_PUBLIC_API_URL=https://nextjs-project-team-1-podorozhnyky.vercel.app/ 
-    NODE_BACKEND_URL=https://node-js-project-team-1.onrender.com
+The app will be available at http://localhost:3000
+.
 
-## ☁️ Deploy Backend (Node.js + MongoDB) to Vercel
+### Build and Run in Production Mode:
 
-1. Go to https://vercel.com  
-2. Click **Add New → Project**  
-3. Import your backend GitHub repository  
-4. Set:
-   - **Framework Preset:** Other  
-   - **Root Directory:** /server (or project root)  
-   - **Install Command:** npm install  
-   - **Build Command:** —  
-   - **Start Command:** npm start  
-5. Add your environment variables (DATABASE_URL, JWT_SECRET, Cloudinary, etc.)  
-6. Deploy  
+To build and run the app in production mode:
 
-## 🍃 MongoDB Atlas
+npm run build
+npm start
+# or
+yarn build
+yarn start
 
-https://cloud.mongodb.com
-Create Cluster
-Add user
-Allow access from 0.0.0.0
-Get connection string and paste into .env
+### Testing:
 
-## 🤝 Contributing
+If tests are configured in the project, you can run them with the following command:
 
-Contributions are welcome!
-  Fork the repository
-  Create a branch (git checkout -b feature-name)
-  Commit your changes (git commit -m "Feature")
-  Push to the branch (git push origin feature-name)
-  Open a Pull Request
+npm test
+# or
+yarn test
+
+
+(Test configuration depends on the tools used, such as Jest or React Testing Library).
+
+### Deployment:
+
+The project can be deployed on platforms that support Next.js, such as Vercel, Netlify with Next.js adapter, or on your own server. For Vercel deployment, simply connect the repository, and Vercel will automatically build and deploy the app.
+
+### Contributing:
+
+We welcome contributions to the project! To contribute:
+
+Fork the repository
+
+Create a new branch for your feature or fix: feature/your-feature or fix/your-fix
+
+Make changes and commit them
+
+Submit a Pull Request
+
+Please follow best coding practices and describe the changes in your PR.
+
+### License:
+
+This project is licensed under the MIT License.
+
+Author:
+
+Author Name: Your Name
+GitHub: Your GitHub Profile
+
+Contact:
+
+If you have any questions or need help, please open an issue in the repository or contact via GitHub profile.
+
+
+
+
+
+
 
