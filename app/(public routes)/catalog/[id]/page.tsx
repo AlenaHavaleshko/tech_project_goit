@@ -1,46 +1,41 @@
-import { notFound } from 'next/navigation';
-import { api } from '@/services/api';
 import { Car } from '@/types/car';
+import CarDetails from './CarDetails';
+import { fetchCarByIdServer } from '@/lib/api/serverApi';
 
-interface CarDetailPageProps {
+type CarDetailsPageProps = {
   params: Promise<{ id: string }>;
-}
+};
 
-async function getCarById(id: string): Promise<Car | null> {
-  try {
-    const response = await api.get(`cars/${id}`);
-    return response.data;
-  } catch (error) {
-    console.error('Error fetching car:', error);
-    return null;
-  }
-}
-
-export default async function CarDetailPage({ params }: CarDetailPageProps) {
+export async function generateMetadata({ params }: CarDetailsPageProps) {
   const { id } = await params;
-  const car = await getCarById(id);
+  const car = await fetchCarByIdServer(id);
 
-  if (!car) {
-    notFound();
-  }
+  return {
+    title: `${car.brand} ${car.model} - Rent Your Next Car Easily`,
+    description: 'Discover seamless car rental solutions for every journey.',
+    icons: {
+      icon: '/favicon.ico',
+    },
+    openGraph: {
+      title: 'Easy Car Rentals - Rent Your Perfect Ride',
+      description:
+        'Explore a hassle-free car rental experience with our platform.',
+      url: process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000',
+      images: [
+        {
+          url: '/home/home-image.webp',
+          width: 1200,
+          height: 630,
+          alt: `Rent a ${car.brand} ${car.model} - Easy and Convenient Car Rentals`,
+        },
+      ],
+    },
+  };
+}
 
-  return (
-    <div style={{ padding: '20px', maxWidth: '800px', margin: '0 auto' }}>
-      <h1>
-        {car.brand} {car.model}
-      </h1>
-      <p>Year: {car.year}</p>
-      <p>Price: ${car.rentalPrice}</p>
-      <p>Type: {car.type}</p>
-      <p>Mileage: {car.mileage.toLocaleString()} km</p>
-      <p>Address: {car.address}</p>
-      <p>Company: {car.rentalCompany}</p>
-      {car.description && <p>Description: {car.description}</p>}
-      <img
-        src={car.img}
-        alt={`${car.brand} ${car.model}`}
-        style={{ maxWidth: '100%' }}
-      />
-    </div>
-  );
+export default async function CarDetailsPage({ params }: CarDetailsPageProps) {
+  const { id } = await params;
+  const car = await fetchCarByIdServer(id);
+
+  return <CarDetails vehicle={car} />;
 }

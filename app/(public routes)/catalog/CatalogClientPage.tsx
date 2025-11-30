@@ -7,7 +7,11 @@ import Filters from './components/Filters/Filters';
 import CarList from './components/CarList/CarList';
 
 export default function CatalogClientPage() {
-  const { cars, filters, addCars, removeCars } = useCarStore();
+  const cars = useCarStore(state => state.cars);
+  const filters = useCarStore(state => state.filters);
+  const addCars = useCarStore(state => state.addCars);
+  const removeCars = useCarStore(state => state.removeCars);
+
   const [page, setPage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
   const [isFetchingNextPage, setIsFetchingNextPage] = useState(false);
@@ -15,6 +19,8 @@ export default function CatalogClientPage() {
 
   // Load initial cars when filters change
   useEffect(() => {
+    let isCancelled = false;
+
     const loadCars = async () => {
       setIsLoading(true);
       removeCars();
@@ -32,12 +38,18 @@ export default function CatalogClientPage() {
         1
       );
 
-      addCars(response.cars);
-      setHasNextPage(response.page < response.totalPages);
-      setIsLoading(false);
+      if (!isCancelled) {
+        addCars(response.cars);
+        setHasNextPage(response.page < response.totalPages);
+        setIsLoading(false);
+      }
     };
 
     loadCars();
+
+    return () => {
+      isCancelled = true;
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     filters.brand,
