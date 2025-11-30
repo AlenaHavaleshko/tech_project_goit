@@ -58,10 +58,14 @@ const CarDetails = ({ vehicle }: CarDetailsProps) => {
     });
   };
 
-  const handleSubmit = async (values: ReservationFormValues) => {
+  const handleSubmit = async (
+    values: ReservationFormValues,
+    { resetForm }: { resetForm: () => void }
+  ) => {
     try {
       await new Promise(resolve => setTimeout(resolve, 500));
       toast.success('Thank you! Your booking request has been received.');
+      resetForm();
     } catch (error) {
       toast.error('Error submitting form. Please try again.');
     }

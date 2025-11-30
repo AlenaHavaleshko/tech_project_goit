@@ -112,10 +112,10 @@ This project is licensed under the MIT License.
 
 Author:
 
-Author Name: Your Name
-GitHub: Your GitHub Profile
+Author Name: Alona Havaleshko
+GitHub: [Your GitHub Profile](https://github.com/AlenaHavaleshko)
 
-Contact:
+Contact:https://github.com/AlenaHavaleshko
 
 If you have any questions or need help, please open an issue in the repository or contact via GitHub profile.
 

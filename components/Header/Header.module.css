@@ -1,13 +1,12 @@
 .header {
   background-color: #f6f8fc;
   box-shadow: 0 1px 3px rgba(0,0,0,0.06);
-  padding: 14px 0;
+  padding: 24px 0;
 }
 
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 24px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;

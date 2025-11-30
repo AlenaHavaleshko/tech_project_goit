@@ -28,16 +28,3 @@ export default async function CarDetailPage({
   if (!car) return notFound();
   return <CarDetails vehicle={car} />;
 }
-
-// export default async function CarDetailPage({ params }: CarDetailPageProps) {
-//   const { id } = params;
-//   const car = await getCarById(id);
-
-//   if (!car) {
-//     notFound();
-
-
-//   }return (
-//     <CarDetails vehicle={car} />
-//   );
-//  }

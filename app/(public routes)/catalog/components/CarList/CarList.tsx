@@ -23,7 +23,9 @@ const CarsList = ({
     <>
       <ul className={styles.carsList}>
         {cars.length > 0
-          ? cars.map(car => <CarCard key={car.id} car={car} />)
+          ? cars.map((car, index) => (
+              <CarCard key={car.id} car={car} priority={index === 0} />
+            ))
           : !isLoading}
       </ul>
       {fetchNextPage && hasNextPage && (
@@ -31,6 +33,7 @@ const CarsList = ({
           className={styles.loadMoreButton}
           onClick={fetchNextPage}
           disabled={isFetchingNextPage}
+          suppressHydrationWarning
         >
           {isFetchingNextPage ? 'Loading...' : 'Load More'}
         </button>

@@ -7,12 +7,17 @@ import styles from './CarCard.module.css';
 
 interface CarCardProps {
   car: Car;
+  priority?: boolean;
 }
 
-export default function CarCard({ car }: CarCardProps) {
+export default function CarCard({ car, priority = false }: CarCardProps) {
   const favorites = useCarStore(state => state.favorites);
   const addToFavorites = useCarStore(state => state.addToFavorites);
   const removeFromFavorites = useCarStore(state => state.removeFromFavorites);
+
+  const formatMileage = (mileage: number): string => {
+    return mileage.toLocaleString('en-US').replace(/,/g, ' ');
+  };
 
   const onClickFavorite = () => {
     if (favorites.some(favCar => favCar.id === car.id)) {
@@ -31,6 +36,7 @@ export default function CarCard({ car }: CarCardProps) {
           width={274}
           height={268}
           className={styles.image}
+          priority={priority}
         />
         <button
           type="button"
@@ -65,7 +71,9 @@ export default function CarCard({ car }: CarCardProps) {
           <li className={styles.carDetailsItem}>{car.rentalCompany}</li>
           <li className={styles.carDetailsItem}>{car.type}</li>
           <li className={styles.carDetailsItem}>{car.model}</li>
-          <li className={styles.carDetailsItem}>{car.mileage}</li>
+          <li className={styles.carDetailsItem}>
+            {formatMileage(car.mileage)}
+          </li>
           <li className={styles.carDetailsItem}>{car.functionalities?.[0]}</li>
         </ul>
 

@@ -1,6 +1,6 @@
 import { CarSearchParams } from "@/types/filters";
 import { Car } from "@/types/car";
-import { api } from "./api"; // Подключение к API
+import { api } from "./api";
 
 interface FetchCarsResponse {
   cars: Car[];
@@ -10,12 +10,12 @@ interface FetchCarsResponse {
 }
 
 interface FetchCarsParams {
-  page: number;
-  limit: number;
-  make?: string;
-  price?: number;
-  mileageFrom?: number;
-  mileageTo?: number;
+  page: string;
+  limit: string;
+  brand?: string;
+  rentalPrice?: string;
+  minMileage?: string;
+  maxMileage?: string;
 }
 
 export default async function fetchCars(
@@ -23,21 +23,21 @@ export default async function fetchCars(
   page: number = 1
 ): Promise<FetchCarsResponse> {
   const params: FetchCarsParams = {
-    page,
-    limit: 12,
-    make: filters.brand || undefined,
-    price: filters.price ? Number(filters.price) : undefined,
-    mileageFrom: filters.mileage?.from ?? undefined,
-    mileageTo: filters.mileage?.to ?? undefined,
+    page: String(page),
+    limit: '12',
+    ...(filters.brand && { brand: filters.brand }),
+    ...(filters.price && { rentalPrice: String(filters.price) }),
+    ...(filters.mileage?.from && { minMileage: String(filters.mileage.from) }),
+    ...(filters.mileage?.to && { maxMileage: String(filters.mileage.to) }),
   };
 
   try {
     const response = await api.get("cars", { params });
     return {
-      cars: response.data.cars,
-      totalCars: response.data.totalCars,
+      cars: response.data.cars || [],
+      totalCars: response.data.totalCars || 0,
       page: response.data.page || page,
-      totalPages: response.data.totalPages,
+      totalPages: response.data.totalPages || 0,
     };
   } catch (error) {
     console.error("Error fetching cars:", error);
