@@ -15,7 +15,7 @@ const Hero: React.FC = () => {
           </p>
           <Link
             className={style.button}
-            href="#catalog"
+            href="/catalog"
             aria-label="View Catalog"
           >
             View Catalog

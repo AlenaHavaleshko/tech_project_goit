@@ -17,15 +17,27 @@ async function getCarById(id: string): Promise<Car | null> {
   }
 }
 
-export default async function CarDetailPage({ params }: CarDetailPageProps) {
-  const { id } = params;
+export default async function CarDetailPage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id } = await params; 
   const car = await getCarById(id);
 
-  if (!car) {
-    notFound();
+  if (!car) return notFound();
+  return <CarDetails vehicle={car} />;
+}
+
+// export default async function CarDetailPage({ params }: CarDetailPageProps) {
+//   const { id } = params;
+//   const car = await getCarById(id);
+
+//   if (!car) {
+//     notFound();
 
 
-  }return (
-    <CarDetails vehicle={car} />
-  );
- }
+//   }return (
+//     <CarDetails vehicle={car} />
+//   );
+//  }

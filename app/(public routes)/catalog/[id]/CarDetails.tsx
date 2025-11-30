@@ -8,7 +8,7 @@ import { useCarStore } from '@/store/carsStore';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import toast from 'react-hot-toast';
-import styles from './CarDetails.module.css'; 
+import styles from './CarDetails.module.css';
 import mainStyles from '@/app/Home.module.css';
 
 type CarDetailsProps = {
@@ -96,6 +96,7 @@ const CarDetails = ({ vehicle }: CarDetailsProps) => {
                 className={styles.favoriteButton}
                 onClick={toggleFavorite}
                 aria-label="Add to favorites"
+                suppressHydrationWarning
               >
                 <svg className={styles.favoriteIcon}>
                   <use
@@ -121,13 +122,14 @@ const CarDetails = ({ vehicle }: CarDetailsProps) => {
                 onSubmit={handleSubmit}
               >
                 {({ isSubmitting, errors, touched, setFieldValue, values }) => (
-                  <Form className={styles.rentalForm}>
+                  <Form className={styles.rentalForm} suppressHydrationWarning>
                     <div className={styles.formGroup}>
                       <Field
                         type="text"
                         name="fullName"
                         placeholder="Full Name*"
                         className={`${styles.formInput} ${errors.fullName && touched.fullName ? styles.inputError : ''}`}
+                        suppressHydrationWarning
                       />
                       <ErrorMessage
                         name="fullName"
@@ -135,13 +137,13 @@ const CarDetails = ({ vehicle }: CarDetailsProps) => {
                         className={styles.errorMessage}
                       />
                     </div>
-
                     <div className={styles.formGroup}>
                       <Field
                         type="email"
                         name="userEmail"
                         placeholder="Email*"
                         className={`${styles.formInput} ${errors.userEmail && touched.userEmail ? styles.inputError : ''}`}
+                        suppressHydrationWarning
                       />
                       <ErrorMessage
                         name="userEmail"
@@ -150,7 +152,7 @@ const CarDetails = ({ vehicle }: CarDetailsProps) => {
                       />
                     </div>
 
-                    <div className={styles.formGroup}>
+                    <div className={styles.formGroup} suppressHydrationWarning>
                       <DatePicker
                         selected={values.startDate}
                         onChange={date => setFieldValue('startDate', date)}
@@ -185,6 +187,7 @@ const CarDetails = ({ vehicle }: CarDetailsProps) => {
                       type="submit"
                       disabled={isSubmitting}
                       className={styles.submitButton}
+                      suppressHydrationWarning
                     >
                       {isSubmitting ? 'Sending...' : 'Send'}
                     </button>
@@ -197,7 +200,8 @@ const CarDetails = ({ vehicle }: CarDetailsProps) => {
           <div className={styles.rightColumn}>
             <h1 className={styles.carTitle}>
               {vehicle.brand}&nbsp;{' '}
-              <span className={styles.carModel}>{vehicle.model}</span>, {vehicle.year}
+              <span className={styles.carModel}>{vehicle.model}</span>,{' '}
+              {vehicle.year}
               <span className={styles.carId}>Id: {vehicle.id}</span>
             </h1>
 
